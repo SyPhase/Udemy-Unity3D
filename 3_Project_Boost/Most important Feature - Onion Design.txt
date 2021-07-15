@@ -1,0 +1,6 @@
+The most important feature is the CORE FEATURE.
+Each new feature is another layer that sould only make the core better.
+
+What is the most important feature in (Rusty Rocket) Project Boost?
+	Flying
+And I think second would be avoiding obstaces.
