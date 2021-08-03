@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    Rigidbody rb;
-    AudioSource audioSource;
+    //// PARAMATERS - for tuning, typically set in the editor
     [SerializeField] float upwardThrust = 1f;
     [SerializeField] float rotationThrust = 1f;
+    [SerializeField] AudioClip thrustEngine;
+
+    //// CACHE - references for readability or speed
+    Rigidbody rb;
+    AudioSource audioSource;
+
+    //// STATE - private instance (member) variables
+    // none currently: eg bool isAlive;
 
     void Start()
     {
@@ -29,7 +36,7 @@ public class Movement : MonoBehaviour
 
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(thrustEngine); // references the Thrust SFX only when thrusting
             }
         }
         else
