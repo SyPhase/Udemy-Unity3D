@@ -8,19 +8,42 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip winLanding;
     [SerializeField] AudioClip crashExplosion;
 
+    [SerializeField] ParticleSystem winLandingParticles;
+    [SerializeField] ParticleSystem crashExplosionParticles;
+
     //// CACHE - references for readability or speed
     AudioSource audioSource;
 
     //// STATE - private instance (member) variables
     bool isAlive = true;
+    bool collisionsActive = true;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+        UseDebugKeys(); // debug/cheats
+    }
+
+    private void UseDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) // "L" load next level
+        {
+            LoadNextLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.C)) // "c" disable/enable collisions
+        {
+            collisionsActive = !collisionsActive;
+        }
+    }
+
     void OnCollisionEnter(Collision other)
     {
+        if (!isAlive || !collisionsActive) { return; }
+
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -37,28 +60,22 @@ public class CollisionHandler : MonoBehaviour
 
     void StartLandingSequence()
     {
-        if (isAlive)
-        {
-            isAlive = false;
-            // TODO add party blower SFX on landing
-            audioSource.PlayOneShot(winLanding);
-            // TODO add confetti particle effect on landing
-            DisablePlayerControls();
-            Invoke("LoadNextLevel", restartDelay);
-        }
+        isAlive = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(winLanding); // adds party blower SFX on landing
+        winLandingParticles.Play(); // adds confetti particles
+        DisablePlayerControls();
+        Invoke("LoadNextLevel", restartDelay);
     }
 
     void StartCrashSequence()
     {
-        if (isAlive)
-        {
-            isAlive = false;
-            // TODO add explosion SFX on crash
-            audioSource.PlayOneShot(crashExplosion);
-            // TODO add explosion particle effect on crash
-            DisablePlayerControls();
-            Invoke("ReloadLevel", restartDelay); // Invoke calls Method after delay
-        }
+        isAlive = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashExplosion); // adds explosion SFX on crash
+        crashExplosionParticles.Play(); // adds explosion particles
+        DisablePlayerControls();
+        Invoke("ReloadLevel", restartDelay); // Invoke calls Method after delay
     }
 
     void LoadNextLevel()

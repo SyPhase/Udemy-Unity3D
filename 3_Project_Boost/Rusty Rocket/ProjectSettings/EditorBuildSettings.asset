@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stalagmite.unity
     guid: 30943d7139b54a94ca9520a3532e5adc
+  - enabled: 1
+    path: Assets/Scenes/Sub Zero.unity
+    guid: 7025a152fac7f89418f01b08afbbd702
   m_configObjects: {}
