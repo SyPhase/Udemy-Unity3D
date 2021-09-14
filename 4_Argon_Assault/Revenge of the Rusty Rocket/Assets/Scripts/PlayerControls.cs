@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviour
     [Header("New Input System")]
     [SerializeField] InputAction movement; // holds input methods (in inspector) (eg. axis, mouse button, etc)
     [SerializeField] InputAction fire;
+    [SerializeField] InputAction quitGame;
 
     [Header("General Setup Settings")]
     [Tooltip("How fast ship moves (up, down, left, right) based on user input")]
@@ -37,16 +38,18 @@ public class PlayerControls : MonoBehaviour
     float xRaw = 0f;
     float yRaw = 0f;
 
-    private void OnEnable() // enables new input system
+    void OnEnable() // enables new input system
     {
         movement.Enable();
         fire.Enable();
+        quitGame.Enable();
     }
 
-    private void OnDisable() // disables new input system
+    void OnDisable() // disables new input system
     {
         movement.Disable();
         fire.Disable();
+        quitGame.Disable();
     }
 
     void Update()
@@ -54,6 +57,12 @@ public class PlayerControls : MonoBehaviour
         ProcessTranslation(); // user input moves ship horizontally and vertically
         ProcessRotation(); // user input and ship position rotate ship (pitch, yaw, roll)
         ProcessFiring(); // user input starts and stops firing process
+
+        if (quitGame.ReadValue<float>() > 0.5)
+        {
+            Application.Quit();
+            Debug.Log("Escape - Tried to Quit Application!");
+        }
     }
 
     void ProcessFiring()
@@ -68,7 +77,7 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    private void SetLasersActive(bool isActive)
+    void SetLasersActive(bool isActive)
     {
         foreach (GameObject laser in lasers) // goes through each item in array "lasers," of type GameObject, with each instance called "laser"
         {
@@ -77,7 +86,7 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    private void ProcessRotation()
+    void ProcessRotation()
     {
         float positionPitch = transform.localPosition.y * -positionPitchFactor; // product y position and pitch (tuning) factor
         float movementPitch = yRaw * movementPitchFactor; // product y input and pitch (tuning) factor
@@ -90,7 +99,7 @@ public class PlayerControls : MonoBehaviour
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
     }
 
-    private void ProcessTranslation()
+    void ProcessTranslation()
     {
         xRaw = movement.ReadValue<Vector2>().x; // reads x-axis input from WASD (AD)
         yRaw = movement.ReadValue<Vector2>().y; // reads y-axis input from WASD (WS)
