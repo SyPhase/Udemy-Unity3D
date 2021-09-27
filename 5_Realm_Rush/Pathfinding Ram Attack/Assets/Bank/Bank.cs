@@ -16,19 +16,19 @@ public class Bank : MonoBehaviour
     void Awake()
     {
         currentBalance = startingBalance;
-        updateDisplay();
+        UpdateDisplay();
     }
 
     public void Deposit(int amount)
     {
         currentBalance += Mathf.Abs(amount);
-        updateDisplay();
+        UpdateDisplay();
     }
 
     public void Withdraw(int amount)
     {
         currentBalance -= Mathf.Abs(amount);
-        updateDisplay();
+        UpdateDisplay();
 
         if (currentBalance < 0)
         {
@@ -37,7 +37,7 @@ public class Bank : MonoBehaviour
         }
     }
 
-    void updateDisplay()
+    void UpdateDisplay()
     {
         displayBalance.text = "Gold: " + currentBalance;
     }

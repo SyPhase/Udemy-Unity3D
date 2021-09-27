@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Enemy))]
 public class enemyHealth : MonoBehaviour
@@ -9,6 +10,8 @@ public class enemyHealth : MonoBehaviour
     [Tooltip("Adds amount to maxHP when enemy dies")]
     [SerializeField] int difficultyRamp = 1;
 
+    [SerializeField] TextMeshProUGUI displayHealth;
+
     int currentHP = 0;
 
     Enemy enemy;
@@ -16,6 +19,7 @@ public class enemyHealth : MonoBehaviour
     void OnEnable()
     {
         currentHP = maxHP;
+        UpdateDisplay();
     }
 
     void Start()
@@ -26,6 +30,7 @@ public class enemyHealth : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         ProcessHit();
+        UpdateDisplay();
     }
 
     void ProcessHit()
@@ -37,5 +42,10 @@ public class enemyHealth : MonoBehaviour
             maxHP += difficultyRamp;
             gameObject.SetActive(false);
         }
+    }
+
+    void UpdateDisplay()
+    {
+        displayHealth.text = "HP: " + currentHP;
     }
 }

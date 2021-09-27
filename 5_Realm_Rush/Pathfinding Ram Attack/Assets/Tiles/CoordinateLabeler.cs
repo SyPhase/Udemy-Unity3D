@@ -40,7 +40,7 @@ public class CoordinateLabeler : MonoBehaviour
 
     void ToggleLabels()
     {
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Space))
         {
             label.enabled = !label.IsActive();
         }
