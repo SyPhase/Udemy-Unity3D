@@ -13,10 +13,14 @@ public class Bank : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI displayBalance;
 
+    //KillCounter killCounter;
+
     void Awake()
     {
         currentBalance = startingBalance;
         UpdateDisplay();
+
+        //killCounter = FindObjectOfType<KillCounter>();
     }
 
     public void Deposit(int amount)
@@ -33,6 +37,7 @@ public class Bank : MonoBehaviour
         if (currentBalance < 0)
         {
             //lose the game
+            //killCounter.SetHighScore();
             ReloadScene();
         }
     }

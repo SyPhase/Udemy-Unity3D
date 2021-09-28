@@ -15,11 +15,17 @@ public class enemyHealth : MonoBehaviour
     int currentHP = 0;
 
     Enemy enemy;
+    KillCounter killCounter;
 
     void OnEnable()
     {
         currentHP = maxHP;
         UpdateDisplay();
+    }
+
+    void Awake()
+    {
+        killCounter = FindObjectOfType<KillCounter>();
     }
 
     void Start()
@@ -41,6 +47,7 @@ public class enemyHealth : MonoBehaviour
             enemy.RewardGold();
             maxHP += difficultyRamp;
             gameObject.SetActive(false);
+            killCounter.AddToKillCount();
         }
     }
 

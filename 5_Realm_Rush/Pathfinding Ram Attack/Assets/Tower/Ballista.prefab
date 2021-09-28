@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 3144582324300694500}
   projectileParticles: {fileID: 5323542026622055628}
-  range: 35
+  range: 25
 --- !u!114 &-3409150121673109573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,7 +826,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 4
     size3D: 0
     rotation3D: 0
     gravityModifier:
