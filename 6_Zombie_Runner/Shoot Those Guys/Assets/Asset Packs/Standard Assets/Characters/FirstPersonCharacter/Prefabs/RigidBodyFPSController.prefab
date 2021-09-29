@@ -247,8 +247,8 @@ MonoBehaviour:
   cam: {fileID: 2000000}
   movementSettings:
     ForwardSpeed: 8
-    BackwardSpeed: 4
-    StrafeSpeed: 4
+    BackwardSpeed: 8
+    StrafeSpeed: 8
     RunMultiplier: 2
     RunKey: 304
     JumpForce: 50
@@ -290,10 +290,10 @@ MonoBehaviour:
     XSensitivity: 2
     YSensitivity: 2
     clampVerticalRotation: 1
-    MinimumX: -45
+    MinimumX: -90
     MaximumX: 90
-    smooth: 1
-    smoothTime: 18
+    smooth: 0
+    smoothTime: 0
     lockCursor: 1
   advancedSettings:
     groundCheckDistance: 0.1
@@ -332,6 +332,23 @@ Transform:
   m_Father: {fileID: 400000}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1113312127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630205098499310045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed6338e43a70b74baa517b3748d0b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FPCamera: {fileID: 2000000}
+  range: 100
+  damage: 30
+  muzzleFlash: {fileID: 4224189297403561084}
+  hitEffect: {fileID: 581429399923712197, guid: 4482afa74f6b7bb429fcd2303acf0e2b, type: 3}
 --- !u!1001 &3959036218151328347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -389,8 +406,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
+--- !u!1 &1630205098499310045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2337074158997199750, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
+  m_PrefabInstance: {fileID: 3959036218151328347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1630205098499153405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2337074158996965286, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
+  m_PrefabInstance: {fileID: 3959036218151328347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4224189297403561084 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 895661896780209703, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
   m_PrefabInstance: {fileID: 3959036218151328347}
   m_PrefabAsset: {fileID: 0}
