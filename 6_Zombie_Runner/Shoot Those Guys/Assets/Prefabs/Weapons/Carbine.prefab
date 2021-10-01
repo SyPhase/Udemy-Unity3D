@@ -346,8 +346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
-  damage: 35
-  timeBetweenShots: 0.067
+  damage: 75
+  timeBetweenShots: 1
   muzzleFlash: {fileID: 3405528820794599353}
   hitEffect: {fileID: 581429399923712197, guid: 4482afa74f6b7bb429fcd2303acf0e2b, type: 3}
   ammoType: 2
