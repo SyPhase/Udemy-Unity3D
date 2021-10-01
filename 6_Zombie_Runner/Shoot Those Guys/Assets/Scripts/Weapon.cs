@@ -5,29 +5,53 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] Camera FPCamera;
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 30f;
+    [Tooltip("Delay in seconds between shots")]
+    [SerializeField] float  timeBetweenShots = 0.067f;
+    [Tooltip("Muzzle flash particle system nested instance (not Prefab)")]
     [SerializeField] ParticleSystem muzzleFlash;
+    [Tooltip("Hit effect particle system Prefab (not instance)")]
     [SerializeField] GameObject hitEffect;
-    [SerializeField] Ammo ammoSlot;
+    [SerializeField] AmmoType ammoType;
+    //[SerializeField] Camera FPCamera; // replaced by GetComponentInParent in Start()
+    //[SerializeField] Ammo ammoSlot;
+
+    Camera FPCamera;
+    Ammo ammoSlot;
+
+    bool canShoot = true;
+
+    void OnEnable()
+    {
+        canShoot = true;
+    }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButtonDown(0) && canShoot)
         {
-            Shoot();
+            StartCoroutine(Shoot());
         }
     }
 
-    void Shoot()
+    void Start()
     {
-        if (ammoSlot.GetCurrentAmmo() > 0)
+        FPCamera = GetComponentInParent<Camera>();
+        ammoSlot = GetComponentInParent<Ammo>();
+    }
+
+    IEnumerator Shoot()
+    {
+        canShoot = false;
+        if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             PlayMuzzleFlash();
             ProcessRaycast();
-            ammoSlot.ReduceAmmo();
+            ammoSlot.ReduceAmmo(ammoType);
         }
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true;
     }
 
     void PlayMuzzleFlash()

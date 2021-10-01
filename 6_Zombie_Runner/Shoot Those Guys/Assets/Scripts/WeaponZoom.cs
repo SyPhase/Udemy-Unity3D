@@ -5,19 +5,26 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class WeaponZoom : MonoBehaviour
 {
-    [SerializeField] Camera camera;
+    //[SerializeField] Camera camera;
     [SerializeField] float zoomedOutFOV = 60f;
     [SerializeField] float zoomedInFOV = 25f;
     [SerializeField] float zoomedOutSense = 2f;
     [SerializeField] float zoomedInSense = 1f;
 
     RigidbodyFirstPersonController fpsController;
+    Camera camera;
 
     bool isZoomedToggle = false;
 
     void Start()
     {
-        fpsController = GetComponent<RigidbodyFirstPersonController>();
+        fpsController = GetComponentInParent<RigidbodyFirstPersonController>();
+        camera = GetComponentInParent<Camera>();
+    }
+
+    void OnDisable()
+    {
+        ZoomOut();
     }
 
     void Update()
@@ -27,9 +34,7 @@ public class WeaponZoom : MonoBehaviour
             if (isZoomedToggle == false)
             {
                 isZoomedToggle = true;
-                camera.fieldOfView = zoomedInFOV;
-                fpsController.mouseLook.XSensitivity = zoomedInSense;
-                fpsController.mouseLook.YSensitivity = zoomedInSense;
+                ZoomIn();
             }
         }
         else
@@ -37,10 +42,22 @@ public class WeaponZoom : MonoBehaviour
             if (isZoomedToggle == true)
             {
                 isZoomedToggle = false;
-                camera.fieldOfView = zoomedOutFOV;
-                fpsController.mouseLook.XSensitivity = zoomedOutSense;
-                fpsController.mouseLook.YSensitivity = zoomedOutSense;
+                ZoomOut();
             }
         }
+    }
+
+    void ZoomIn()
+    {
+        camera.fieldOfView = zoomedInFOV;
+        fpsController.mouseLook.XSensitivity = zoomedInSense;
+        fpsController.mouseLook.YSensitivity = zoomedInSense;
+    }
+
+    void ZoomOut()
+    {
+        camera.fieldOfView = zoomedOutFOV;
+        fpsController.mouseLook.XSensitivity = zoomedOutSense;
+        fpsController.mouseLook.YSensitivity = zoomedOutSense;
     }
 }

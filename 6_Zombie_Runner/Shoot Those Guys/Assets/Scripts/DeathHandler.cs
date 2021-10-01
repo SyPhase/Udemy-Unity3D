@@ -15,7 +15,19 @@ public class DeathHandler : MonoBehaviour
     {
         gameOverCanvas.enabled = true;
         Time.timeScale = 0;
+        DisableWeapons();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    void DisableWeapons()
+    {
+        GetComponentInChildren<WeaponSwitcher>().enabled = false;
+        GetComponentInChildren<Weapon>().enabled = false;
+
+        if (GetComponentInChildren<WeaponZoom>() != null)
+        {
+            GetComponentInChildren<WeaponZoom>().enabled = false;
+        }
     }
 }
