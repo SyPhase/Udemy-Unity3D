@@ -232,7 +232,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.6
+  m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400004
@@ -252,7 +252,7 @@ MonoBehaviour:
     ForwardSpeed: 8
     BackwardSpeed: 8
     StrafeSpeed: 8
-    RunMultiplier: 2
+    RunMultiplier: 1
     RunKey: 304
     JumpForce: 50
     SlopeCurveModifier:
@@ -344,11 +344,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoSlots:
   - ammoType: 0
-    ammoAmount: 10
+    ammoAmount: 0
   - ammoType: 1
-    ammoAmount: 4
+    ammoAmount: 0
   - ammoType: 2
-    ammoAmount: 6
+    ammoAmount: 0
 --- !u!1 &615393774301531227
 GameObject:
   m_ObjectHideFlags: 0

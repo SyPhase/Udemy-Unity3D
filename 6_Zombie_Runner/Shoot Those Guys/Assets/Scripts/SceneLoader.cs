@@ -5,7 +5,7 @@ public class SceneLoader : MonoBehaviour
 {
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(1); // if multiple levels, add variable to remember what level
+        SceneManager.LoadScene(0); // if multiple levels, add variable to remember what level
         Time.timeScale = 1;
     }
 
