@@ -1,6 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -14,8 +13,7 @@ public class Weapon : MonoBehaviour
     [Tooltip("Hit effect particle system Prefab (not instance)")]
     [SerializeField] GameObject hitEffect;
     [SerializeField] AmmoType ammoType;
-    //[SerializeField] Camera FPCamera; // replaced by GetComponentInParent in Start()
-    //[SerializeField] Ammo ammoSlot;
+    [SerializeField] TextMeshProUGUI ammoText;
 
     Camera FPCamera;
     Ammo ammoSlot;
@@ -29,10 +27,19 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        DisplayAmmo();
         if (Input.GetMouseButtonDown(0) && canShoot)
         {
             StartCoroutine(Shoot());
         }
+    }
+
+    void DisplayAmmo()
+    {
+        int currentAmmo = ammoSlot.GetCurrentAmmo(ammoType);
+        string ammoName = ammoType.ToString();
+        ammoName = ammoName.Substring(0, ammoName.Length - 4);
+        ammoText.text = ammoName + " : " + currentAmmo;
     }
 
     void Start()
