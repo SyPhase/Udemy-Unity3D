@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 7825960758306812005}
   - component: {fileID: 6401010217956380997}
   - component: {fileID: 4194464162999994723}
+  - component: {fileID: 4736873679559279301}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -365,6 +366,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactCanvas: {fileID: 0}
   impactTime: 0.3
+--- !u!114 &4736873679559279301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bff4218c93abf41ae5f5630e38cbde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615393774301531227
 GameObject:
   m_ObjectHideFlags: 0
